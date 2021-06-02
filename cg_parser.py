@@ -49,7 +49,7 @@ def parse_page(link, db, id_to_stop=None):
     :param id_to_stop: id последней отправленной записи
     :return: Возвращает id записей в группе
     """
-    soup = bs4.BeautifulSoup(requests.get(link, headers=headers).text, 'lxml')
+    soup = bs4.BeautifulSoup(requests.get(link, headers=headers).text, 'html.parser')
     # Ищет раздел с постами в группе
     if len(soup.find_all('div', {'class': re.compile('wall_posts')})[0].find_all(
             'div', {'id': re.compile('post-'), 'class': re.compile('_post post')})) == 1:
